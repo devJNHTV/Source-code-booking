@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en" th:replace= "~{/layout/index:: dynamic(~{::main}) }">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+		<main th:object="${order}">
+					<h1>Order Detail</h1>
+					<div class="card">
+					  <div class="card-header">
+					    Checkout
+					  </div>
+					  <div  class="card-body">
+					    	<form class="row g-3" method="Post">
+					    	<div class="col-md-6">
+							    <label  class="form-label">ID Order</label>
+							    <input type="text"  th:field="*{id}" class="form-control"  readonly>
+							   </div>
+							  <div class="col-md-6">
+							    <label  class="form-label">Name</label>
+							    <div class="form-control" id="username" th:text="${@auth.getUsername()}"></div>
+							  </div>
+							  <div class="col-md-6">
+							    <label class="form-label">Date</label>
+							    <input  class="form-control"  value="{{order.createDate |date:'dd-MM-yyyy'}}">
+							  </div>
+							   <div class="col-md-6">
+							    <label for="inputAddress" class="form-label">Address</label>
+							    <input type="text"  th:field="*{address}" class="form-control" id="inputAddress" >
+							   </div>
+								    
+						
+					 </form>
+					  </div>
+					  					<div class="card">
+					  <div class="card-header">
+					   Order Line
+					  </div>
+					  <div  class="card-body">
+												    	<table class="table">
+							  <thead>
+							    <tr>
+							      <th scope="col">ID</th>
+							      <th scope="col">Name</th>
+							      <th scope="col">Price</th>
+							      <th scope="col">Quantity</th>
+							      <th scope="col">Amount</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							    <tr th:each="detail:*{orderDetails}" th:object="${detail}">
+							      <th scope="row">[[*{product.id}]]</th>
+							      <td>[[*{product.name}]]</td>
+							      <td>[[*{product.price}]]</td>
+							      <td>[[*{quantity}]]</td>
+							      <td>[[*{price*quantity}]]</td>
+							    </tr>
+							  </tbody>
+							</table>
+					  </div>
+		</main>
+</body>
+</html>
