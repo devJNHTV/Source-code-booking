@@ -28,7 +28,7 @@ public class Holiday {
 	    private Integer id;
 		private String name;
 		@Temporal(TemporalType.DATE)
-		@Column(name = "HolidayDate")
+		@Column(name = "Holidaydate")
 		private Date holidayDate = new Date();
 
 }

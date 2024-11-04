@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en" th:replace= "~{/layout/index:: dynamic(~{::main}) }">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+		<main>
+				<div th:replace="~{cart/view :: shopping_cart}"></div>
+				<div style="margin-top:20px;" class="card" >
+					  <div class="card-header">
+					  	 <h1 style="font-family: Georgia, serif, Arial, sans-serif !important">Check Out Infomation</h1>
+					  </div>
+					  <div class="card-body">
+					    	<form class="row g-3" method="Post" >
+							  <div class="col-md-6">
+							    <label  class="form-label">Name</label>
+							    <div class="form-control" id="username" th:text="${@auth.getUsername()}" ></div>
+							  </div>
+							  <div class="col-md-6">
+							    <label class="form-label">Create Date</label>
+							    <input  class="form-control"  value="{{order.createDate |date:'dd-MM-yyyy'}}">
+							  </div>
+							   
+							    <div class="col-md-6">
+							    <label  class="form-label">Full name</label>
+							    <div class="form-control" id="" th:text="${account.fullname}"></div>
+							  </div>
+							   <div class="col-md-6">
+							    <label  class="form-label">Phone</label>
+							    <div class="form-control" id="" th:text="${account.phone}"></div>
+							  </div>
+							   <div class="col-md-6">
+							    <label  class="form-label">Email</label>
+							    <div class="form-control" id="" th:text="${account.email}"></div>
+							  </div>
+							     <div>
+							     <button class="btn btn-success" ng-click="order.purchase()">Purchase</button>
+							     </div>
+								    
+						
+					 </form>
+					  </div>
+				</div>
+				<div class="container-xxl testimonial mt-5 py-5 bg-dark wow zoomIn text-center" data-wow-delay="0.1s" style="margin-bottom: 90px;">
+            <div class="container">
+              
+        </div>
+			</main>
+</body>
+</html>

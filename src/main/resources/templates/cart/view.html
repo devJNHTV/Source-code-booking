@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en" th:replace= "~{/layout/index:: dynamic(~{::main}) }">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+ <style>
+		
+       
+    </style>
+</head>
+
+<body>			 
+		<main  class="container mt-5">
+        <div ng-if="cart.rooms.length === 0" class="empty-cart">
+            <h1 style="font-family: Georgia, serif, Arial, sans-serif !important">Booking your room now!</h1>
+        </div>
+        
+        <div ng-if="cart.rooms.length > 0" th:fragment="shopping_cart" >
+            <h1 class="mb-4" style="font-family: Georgia, serif, Arial, sans-serif !important">Your Room</h1>
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-dark text-center" >
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Phòng</th>
+                        <th scope="col">Ảnh Phòng</th>
+                        <th scope="col">Giá Tiền</th>
+                        <th scope="col">Ngày Nhận Phòng </th>
+                        <th scope="col">Ngày Trả Phòng</th>
+                        <th scope="col">Số ngày</th>
+                        <th scope="col">Tổng Tiền</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    <tr ng-repeat="room in cart.rooms" class="text-center">
+                    		
+                        <td scope="row">{{ $index + 1 }}</td>
+                        <td>{{ room.name }}</td>
+                        <td style="width:30%">
+                            <a th:href="@{|/room/detail/{{room.id}}|}">
+                                <img src="/assets/img/{{ room.photo[0] }}" style="width:60% " class="table-img" alt="{{ room.name }}">
+                            </a>
+                        </td>
+                        <td>{{ room.price | currency:"₫":symbol:true }}/đêm	</td>
+                       
+                        <td >{{ formatDate(room.checkinDate) }}</td>
+                        <td>{{ formatDate(room.checkoutDate) }}</td>
+                        <td>{{ room.nightStay }}</td>
+                        <td>{{ room.qty * room.price*room.nightStay | currency:"₫":symbol:true }}</td>
+                        <td>
+                            <button ng-click="cart.remove(room.id)" class="btn btn-danger btn-remove">
+                                <i class="bi bi-x"></i> Remove
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="checkout-section">
+              	
+                <h2 style="font-size: 20px;font-family: serif">Total Room Fee: {{ cart.amountRoom | currency:"₫":symbol:true}}</h2> <br>
+                    <button ng-click="cart.clearRoom()" class="btn btn-danger btn-custom">
+                        <i class="bi bi-x-circle"></i> Clear Cart
+                    </button>
+                    <a th:href="@{|/booking/checkout|}" class="btn btn-success">Check Out</a>
+                </div>
+            
+        </div>
+       
+        
+       <!--Your Service  -->
+        
+        <div ng-if="cart.services.length > 0" th:fragment="shopping_cart" >
+            <h1 class="mb-4"  style="font-family: Georgia, serif, Arial, sans-serif !important;margin-top:20px"> Your Service</h1>
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-dark">
+                    <tr class="text-center">
+                        <th scope="col">STT</th>
+                        <th scope="col">Tên dịch vụ </th>
+                        <th scope="col">Ảnh</th>
+                        <th scope="col">Giá Tiền</th>
+                        <th scope="col">Số Lượng</th>
+                            <th scope="col">Số Ngày Sử Dụng</th>
+                        <th scope="col">Tổng Tiền</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="service in cart.services" class="text-center">
+                    		
+                        <th scope="row">{{ $index+1 }}</th>
+                        <td>{{ service.name }}</td>
+                        <td style="width:30%">
+                            <a>
+                                <img src="/assets/img/{{ service.photo }}" style="width:50% " class="table-img" alt="{{ room.name }}">
+                            </a>
+                        </td>
+                        <td>{{ service.price| currency:"₫":symbol:true }}</td>
+                        <td>
+                            <input ng-change="cart.saveToLocalStorage()" ng-model="service.qty" type="number" min="1" class="form-control" style="width: 80px;">
+                        </td>
+                        <td>
+                            <input ng-change="cart.saveToLocalStorage()" ng-model="service.svday" type="number" min="1" class="form-control" style="width: 80px;">
+                        </td>
+                        <td>{{ service.qty * service.price* service.svday | number:2 }}$</td>
+                        <td>
+                            <button ng-click="cart.remove(service.id)" class="btn btn-danger btn-remove">
+                                <i class="bi bi-x"></i> Remove
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="checkout-section">
+                <div>
+                 <h2 style="font-size: 20px;font-family: serif">Total Service Fee: {{ cart.amountService | currency:"₫":symbol:true}}</h2> <br>
+                    <button ng-click="cart.clearService()" class="btn btn-danger btn-custom">
+                        <i class="bi bi-x-circle"></i> Clear Cart
+                    </button>
+                    <a th:href="@{|/booking/checkout|}" class="btn btn-success">Check Out</a>
+                </div>
+            </div>
+           
+        </div>
+         <div  ng-if="cart.rooms.length >0" class="empty-cart" th:fragment="shopping_cart" > <h2 style="font-size: 30px;font-family: serif; margin-top:20px">Total your fee: {{ cart.amount | currency:"₫":symbol:true}}</h2></div>
+          
+         
+         
+         
+            <div class="container-xxl testimonial mt-5 py-5 bg-dark wow zoomIn text-center" data-wow-delay="0.1s" style="margin-bottom: 90px;">
+            <div class="container">
+           
+       
+    </main>
+</body>
+</html>

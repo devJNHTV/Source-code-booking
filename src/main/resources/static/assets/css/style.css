@@ -489,3 +489,37 @@
     padding-right: 0;
     border-right: none;
 }
+.image-container {
+            width: 100%; /* Khung chứa ảnh */
+            max-height: 600px;
+            height: auto; /* Chiều cao tự động theo chiều rộng */
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%; /* Hình ảnh chiếm toàn bộ chiều rộng của khung */
+            height: auto; /* Tự động điều chỉnh chiều cao để giữ tỷ lệ */
+            max-width: 100%; /* Đảm bảo ảnh không vượt quá khung */
+            max-height: 100%; /* Đảm bảo ảnh không quá cao */
+        }
+.name{
+	font-family: "Times New Roman", Times, serif, Arial, sans-serif;
+	font-size: 36px;
+	font-weight: 300px;
+	
+}
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}

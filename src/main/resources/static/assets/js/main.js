@@ -106,4 +106,29 @@
     });
     
 })(jQuery);
+$(function () {
+    $('#checkoutDate').datetimepicker({
+        format: 'YYYY-MM-DD', // Định dạng ngày mong muốn khi lưu vào database
+        icons: { time: 'd-none' }, // Ẩn biểu tượng đồng hồ để chỉ chọn ngày
+        pickTime: false // Không cho phép chọn giờ
+    });
+});
+$(function () {
+    $('#checkinDate').datetimepicker({
+        format: 'YYYY-MM-DD', // Định dạng ngày mong muốn khi lưu vào database
+        icons: { time: 'd-none' }, // Ẩn biểu tượng đồng hồ để chỉ chọn ngày
+        pickTime: false // Không cho phép chọn giờ
+    });
+});
+$(document).ready(function () {
+    $('#checkinDate input').datetimepicker({
+        format: 'YYYY-MM-DD',
+        useCurrent: false
+    });
+
+    $('#checkoutDate input').datetimepicker({
+        format: 'YYYY-MM-DD',
+        useCurrent: false
+    });
+});
 

@@ -8,6 +8,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,11 +24,20 @@ import lombok.NoArgsConstructor;
 @Table(name = "Accounts")
 public class Account {
 	@Id
+	@NotBlank(message="{NotBlank.account.username}")
     private String username;
+	@NotBlank(message = "{NotBlank.account.password}")
+	@Size(min = 6, message = "{Size.account.password}")
     private String password;
+	@NotBlank(message = "{NotBlank.account.fullname}")
     private String fullname;
+	@NotBlank(message="{NotBlank.account.email}")
+    @Email(message="{Email.account.email")
     private String email;
-    private String photo ;
+	@NotBlank(message="{NotBlank.account.phone}")
+	@Pattern(regexp = "^[0-9]+$", message = "Phone number must contain only digits")
+	@Size(min=15,message="{phone.size}")
+    private String phone ;
     private Boolean enabled;
     @JsonIgnore
     @OneToMany(mappedBy = "account")

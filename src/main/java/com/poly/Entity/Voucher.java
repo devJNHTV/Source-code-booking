@@ -28,17 +28,17 @@ public class Voucher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 private Integer id;
 	 private String code;
-	 private Boolean typeDiscount;
-	 private Integer valueDiscount;
+	 private Boolean typediscount;
+	 private Integer valuediscount;
 	 @Temporal(TemporalType.DATE)
-	 @Column(name = "StartDate")
-	 private Date startDate = new Date();
+	 @Column(name = "Startdate")
+	 private Date startdate = new Date();
 	 @Temporal(TemporalType.DATE)
-	 @Column(name = "EndDate")
-	 private Date endDate = new Date();
-	 private Double minValue;
-	 private Double maxDiscount;
-	 private Integer usageLimit;
+	 @Column(name = "Enddate")
+	 private Date enddate = new Date();
+	 private Double minvalue;
+	 private Double maxdiscount;
+	 private Integer usagelimit;
 	 private String description;
 	
 }

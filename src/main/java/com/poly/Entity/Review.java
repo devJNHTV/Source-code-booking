@@ -26,7 +26,7 @@ public class Review {
 	private Integer id;
 	private String comment;
 	@ManyToOne
-    @JoinColumn(name = "RoomID")
+    @JoinColumn(name = "Roomid")
     private Room room;
 	@ManyToOne
     @JoinColumn(name = "username")

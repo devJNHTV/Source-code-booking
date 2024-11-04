@@ -29,7 +29,7 @@
                             <div class="navbar-nav mr-auto py-0">
                                 <a th:href="@{/home}" class="nav-item nav-link">Home</a>
                                 <a href="about.html" class="nav-item nav-link">About</a>
-                                <a href="service.html" class="nav-item nav-link">Services</a>
+                                <a th:href="@{/service/list}" class="nav-item nav-link">Services</a>
                                 <a th:href="@{/room/list}" class="nav-item nav-link active">Rooms</a>
                                 <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
@@ -40,6 +40,24 @@
                                     </div>
                                 </div>
                                 <a href="contact.html" class="nav-item nav-link">Contact</a>
+                     
+                    				   <th:block th:if="${@auth.isAuthenticated()}">
+          
+		           							 <a th:if="${@auth.hasRole('Directors') or @auth.hasRole('Staffs')} " th:href="@{/admin/home/index}" class="nav-item nav-link">Adminstration</a>
+                                	  	 	 <a th:href="@{/booking/list}" class="nav-item nav-link">Your Orders</a>
+                                      		 <a th:href="@{/security/logoff}" class="nav-item nav-link">Sign Out</a>
+         							 </th:block>
+         							 <i   style="color:red" class="nav-item nav-link"><a th:href="@{/cart/view}"><i class="bi bi-cart"></i>Cart</a></i>
+         							  
+         							 
+                                   <th:block th:if="${!@auth.isAuthenticated()}">
+          								<a th:href="@{/security/login/form}" class="nav-item nav-link">Login</a>
+			          				</th:block>
+			          				<th:block th:if="${@auth.isAuthenticated()}">
+          								<i   style="margin-left:160px;color:red" class="nav-item nav-link"><a th:href="@{/account/info}"><i class="bi bi-people-fill"></i> Welcome [[${@auth.getUsername}]]</a></i>
+			          				</th:block>
+                                 
+                               
                             </div>
                         </div>
                     </nav>

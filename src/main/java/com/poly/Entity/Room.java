@@ -41,6 +41,7 @@ public class Room {
 		@ManyToOne
 	    @JoinColumn(name ="Kindid")
 	    private KindRoom kindroom;
+		 @JsonIgnore
 		@OneToMany(mappedBy = "room")
 	    private List<Review> reviews;
 }

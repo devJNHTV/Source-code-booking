@@ -18,5 +18,17 @@ public class RoomServiceIml  implements RoomService{
 		// TODO Auto-generated method stub
 		return rDAO.findAll();
 	}
+	@Override
+	public Room findByID(Integer id) {
+		// TODO Auto-generated method stub
+		return rDAO.findById(id).get();
+	}
+	@Override
+	public Room updateRoomStatus(Integer roomId, boolean updatedStatus) {
+		 Room roomUpdated= rDAO.findById(roomId).get();
+		 roomUpdated.setStatus(updatedStatus);
+		 
+		return rDAO.save(roomUpdated);
+	}
 
 }

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en" th:replace= "~{/layout/index:: dynamic(~{::main}) }">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+</head>
+
+<body>
+		<main>
+		 <div class="container-fluid">
+        <!-- Row 1 -->
+        <div class="row">
+            <div class="col-12 image-container">
+                
+                		<img   th:src="@{|/assets/img/${room.photo.get(0)}|}">
+           
+            </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="row">
+            <div class="col-12" style="padding-top:30px">
+                <h1  class="name" th:text="'Phòng '+${room.name}"></h1>
+            </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="row">
+          	 <div class="container" style="width:80%">
+        <!-- Row 1 -->
+        <div class="row">
+            <div class="col-12 image-container" >
+                
+                		<img   th:src="@{|/assets/img/${room.photo.get(1)}|}">
+           
+            </div>
+        </div>
+        </div>
+
+        <!-- Row 4 with 2 columns -->
+        <div class="container" style="width:80%">
+        <div class="row" style="padding-top:30px">
+        
+            <div class="col-md-6">
+               	<h2>ĐẶC ĐIỂM PHÒNG Ở</h2>
+               	<p>Các phòng Signature Studio có diện tích 43.5m2 (468 ft2) lớn nhất trong các hạng phòng thông thường thích hợp dành cho các kỳ nghỉ và công tác dài ngày. Phòng tắm được lát cẩm thạch ngoại nhập sang trọng với bộ sữa tắm, rửa mặt từ dòng sản phẩm cao cấp Black của thương hiệu Appelles nổi tiếng. </p>
+            </div>
+            <div class="col-md-6">
+             <h2>QUYỀN LỢI & TIỆN NGHI</h2>
+            <div class="row">
+            	<div class="col-md-6">
+		            	  <p>- Phòng không khói thuốc</p>
+		                  <p>- Có quyền sử dụng Signature Lounge</p>
+		                  <p>- Có điều hòa không khí</p>
+		                  <p>- Trang bị máy pha cà phê Nespresso</p>
+                  </div>
+            	<div class="col-md-6">
+			            	 <p>- Trang bị máy sấy tóc</p>
+			                 <p>- Trang bị két sắt an toàn</p>
+                  
+          		 </div>
+               
+                
+            </div>
+            </div>
+        </div>
+    </div>
+	<div class="row justify-content-center">
+        <div class="col-auto">
+            <a class="btn btn-sm btn-primary rounded py-2 px-4" th:href="@{||}">Booking Now</a>
+        </div>
+    </div>
+    				
+      <div class="container-xxl testimonial mt-5 py-5 bg-dark wow zoomIn text-center" data-wow-delay="0.1s" style="margin-bottom: 90px;">
+            <div class="container">
+              
+        </div>
+		</main>
+</body>
+</html>
