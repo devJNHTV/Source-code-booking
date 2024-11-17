@@ -2,25 +2,21 @@ const app = angular.module("shopping-cart-app",[]);
 
 app.controller("shopping-cart-ctrl",function($scope,$http){
 	   
-	$scope.updateDates = function() {
-	    console.log("Check-in Date:", $scope.checkinDate);
-	    console.log("Check-out Date:", $scope.checkoutDate);
-	};
-	const today = new Date();
-	   $scope.checkinDate = today; // Gán trực tiếp kiểu Date
-
-	   // Thiết lập ngày checkout là ngày kế tiếp
-	   const tomorrow = new Date();
-	   tomorrow.setDate(today.getDate() + 1);
-	   $scope.checkoutDate = tomorrow; // Gán trực tiếp kiểu Date
 	$scope.formatDate = function(date) {
 	    if (!date) return ''; // Kiểm tra nếu không có ngày
 	    const d = new Date(date);
-	    const year = d.getFullYear();
-	    const month = String(d.getMonth() + 1).padStart(2, '0'); // Tháng bắt đầu từ 0
-	    const day = String(d.getDate()).padStart(2, '0');
-	    return `${year}-${month}-${day}`; // Trả về định dạng "YYYY-MM-DD"
-	};	
+
+	    // Mảng tên các ngày trong tuần
+	    const daysOfWeek = ["Chủ Nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
+	    const dayOfWeek = daysOfWeek[d.getDay()]; // Lấy tên ngày trong tuần
+	    
+	    const day = d.getDate(); // Ngày
+	    const month = d.getMonth() + 1; // Tháng (bắt đầu từ 0)
+	    const year = d.getFullYear(); // Năm
+
+	    return `${dayOfWeek}, ngày ${day} tháng ${month} năm ${year}`;
+	};
+
 	$scope.cart={
 		items:[],
 		// them san pham vao gio hang
@@ -42,14 +38,17 @@ app.controller("shopping-cart-ctrl",function($scope,$http){
 				             $http.get(`/rest/rooms/${item.id}`).then(resp => {
 				                 resp.data.qty = 1;
 				                 resp.data.type = 'room'; // Đặt loại là room
-								 var formattedCheckinDate = $scope.formatDate($scope.checkinDate);
-								 var formattedCheckoutDate = $scope.formatDate($scope.checkoutDate);
-								 resp.data.checkinDate = formattedCheckinDate;  // Lưu ngày check-in
-								 resp.data.checkoutDate =  formattedCheckoutDate; 
-								 const timeDifference = checkoutDate.getTime() - checkinDate.getTime();
+								
+								 resp.data.checkinDate = checkinDate;  // Lưu ngày check-in
+								 resp.data.checkoutDate =  checkoutDate; 
+								 var indate = new Date(checkinDate)
+								
+								 var outdate = new Date(checkoutDate)
+								 const timeDifference = outdate-indate;
 								 console.log(timeDifference) // Tính hiệu số thời gian
-								const nightStay =Math.ceil(timeDifference / (1000 * 3600 * 24));
-								 resp.data.nightStay = Math.ceil(nightStay);
+								 const nightStay =Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+								 
+								 resp.data.nightStay = nightStay
 				                 this.items.push(resp.data);
 				                 this.saveToLocalStorage();
 				             });
@@ -138,7 +137,8 @@ app.controller("shopping-cart-ctrl",function($scope,$http){
 								room: item.type === 'room' ? { id: item.id } : null,
 								            service: item.type === 'service' ? { id: item.id } : null,
 								            price: item.price,
-								            quantity: item.qty
+								            quantity: item.qty,
+											servicedays: item.type==="service" ?item.svday:item.nightStay
 							}
 						}).filter(detail => detail.room || detail.service);
 					},
@@ -161,6 +161,7 @@ app.controller("shopping-cart-ctrl",function($scope,$http){
 					                });
 					        }
 					    });
+						location.href="/booking/detail/" + resp.data.id;
 					$scope.cart.clear();
 				}).catch(error=>{
 					alert("invalid")

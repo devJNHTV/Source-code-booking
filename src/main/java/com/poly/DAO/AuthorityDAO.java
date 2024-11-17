@@ -5,9 +5,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.Repository;
 
 import com.poly.Entity.Account;
+import com.poly.Entity.Authority;
 import com.poly.Entity.Room;
 
 @EnableJpaRepositories
-public interface AccountDAO extends JpaRepository <Account, String> {
-	Account findByUsernameAndEmail(String username, String email);
+public interface AuthorityDAO extends JpaRepository <Authority, Integer> {
+	
 }

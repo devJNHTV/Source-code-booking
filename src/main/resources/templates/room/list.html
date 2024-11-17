@@ -30,14 +30,25 @@
                     <div class="row g-2">
                         <div class="col-md-12">
                             <div class="row ">
-                                <div class="col-md-6">
-                                   <lable>Check-in Date</lable>
-					               <input type="date" id="checkinDate" ng-model="checkinDate" class="form-control" />
-                                </div>
-                                <div class="col-md-6">
-                                 <lable>Check-out Date</lable>
-					            <input type="date" id="checkoutDate" ng-model="checkoutDate" class="form-control" />
-                                </div>
+                                <form action="/room/list/available" method="get" onsubmit="return validateDates()">
+                             
+			                                	<div class="row">
+			                                	<div class="col-md-5">
+			                                   <lable>Check-in Date</lable>
+								               <input type="date"   id="checkinDate" name="checkIn" class="form-control"   th:value="${checkIn}"/>
+			                                </div>
+			                                <div class="col-md-5">
+			                                 <lable>Check-out Date</lable>
+								            <input type="date" id="checkoutDate"  name="checkOut" th:value="${checkOut}"class="form-control" />
+			                                </div>
+			                                <div class="col-md-2">
+			                               
+			                                   <button  style="margin-top: 22px;" type="submit" class="btn btn-success"  >Search</button>
+			                                </div>
+			                                	</div>
+			                              
+                                </form>
+     
                                 
                     </div>
                 </div>
@@ -85,7 +96,7 @@
                                 <div class="d-flex justify-content-between">
                                     <a class="btn btn-sm btn-primary rounded py-2 px-4" th:href="@{|/room/detail/${room.id}|}">View Detail</a>
                                       <button class="btn btn-sm btn-dark rounded py-2 px-4" 
-								        th:attr="ng-click=@{|cart.add({id: ${room.id}, type: 'room'},checkinDate,checkoutDate)|}">
+								        th:attr="ng-click=@{|cart.add({id: ${room.id}, type: 'room'},'${checkIn}','${checkOut}')|}">
 								    Thêm vào giỏ hàng
 												</button>
                                   

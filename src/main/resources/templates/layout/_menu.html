@@ -20,7 +20,7 @@
                     </div>
                     <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
                         <a href="index.html" class="navbar-brand d-block d-lg-none">
-                            <h1 class="m-0 text-primary text-uppercase">Hotelier</h1>
+                            <h1 class="m-0 text-primary text-uppercase">HOTEL SG</h1>
                         </a>
                         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                             <span class="navbar-toggler-icon"></span>
@@ -31,20 +31,12 @@
                                 <a href="about.html" class="nav-item nav-link">About</a>
                                 <a th:href="@{/service/list}" class="nav-item nav-link">Services</a>
                                 <a th:href="@{/room/list}" class="nav-item nav-link active">Rooms</a>
-                                <div class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                                    <div class="dropdown-menu rounded-0 m-0">
-                                        <a href="booking.html" class="dropdown-item">Booking</a>
-                                        <a href="team.html" class="dropdown-item">Our Team</a>
-                                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                    </div>
-                                </div>
-                                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                                            
                      
                     				   <th:block th:if="${@auth.isAuthenticated()}">
           
 		           							 <a th:if="${@auth.hasRole('Directors') or @auth.hasRole('Staffs')} " th:href="@{/admin/home/index}" class="nav-item nav-link">Adminstration</a>
-                                	  	 	 <a th:href="@{/booking/list}" class="nav-item nav-link">Your Orders</a>
+                                	  	 	 <a th:href="@{|/booking/list|}" class="nav-item nav-link">Your Orders</a>
                                       		 <a th:href="@{/security/logoff}" class="nav-item nav-link">Sign Out</a>
          							 </th:block>
          							 <i   style="color:red" class="nav-item nav-link"><a th:href="@{/cart/view}"><i class="bi bi-cart"></i>Cart</a></i>

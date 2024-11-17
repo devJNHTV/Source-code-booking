@@ -57,8 +57,11 @@
             </table>
             
             <div class="checkout-section">
-              	
-                <h2 style="font-size: 20px;font-family: serif">Total Room Fee: {{ cart.amountRoom | currency:"₫":symbol:true}}</h2> <br>
+              	<div style="display: flex; justify-content: flex-end; align-items: center;">
+												    <h3 style="margin-right: 5px;">Tổng Tiền Phòng:</h3>
+												    <h3 style="color: red;" >{{ cart.amountRoom | currency:"₫":symbol:true}}</h3>
+						</div>
+                <h2 style="font-size: 20px;font-family: serif"></h2> <br>
                     <button ng-click="cart.clearRoom()" class="btn btn-danger btn-custom">
                         <i class="bi bi-x-circle"></i> Clear Cart
                     </button>
@@ -114,7 +117,10 @@
             
             <div class="checkout-section">
                 <div>
-                 <h2 style="font-size: 20px;font-family: serif">Total Service Fee: {{ cart.amountService | currency:"₫":symbol:true}}</h2> <br>
+                 <div style="display: flex; justify-content: flex-end; align-items: center;">
+												    <h3 style="margin-right: 5px;">Tổng Tiền Dịch Vụ:</h3>
+												    <h3 style="color: red;" >{{ cart.amountService | currency:"₫":symbol:true}}</h3>
+						</div>
                     <button ng-click="cart.clearService()" class="btn btn-danger btn-custom">
                         <i class="bi bi-x-circle"></i> Clear Cart
                     </button>
@@ -123,8 +129,11 @@
             </div>
            
         </div>
-         <div  ng-if="cart.rooms.length >0" class="empty-cart" th:fragment="shopping_cart" > <h2 style="font-size: 30px;font-family: serif; margin-top:20px">Total your fee: {{ cart.amount | currency:"₫":symbol:true}}</h2></div>
-          
+         
+          <div ng-if="cart.rooms.length >0" style="display: flex; justify-content: flex-end; align-items: center;">
+												    <h3 style="margin-right: 5px;">Tổng Tiền :</h3>
+												    <h3 style="color: red;" >{{ cart.amount | currency:"₫":symbol:true}}</h3>
+						</div>
          
          
          

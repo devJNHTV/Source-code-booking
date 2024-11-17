@@ -12,4 +12,8 @@ public interface AccountService {
 
 	Account findbyID(String username);
 
+	boolean isUsernameTaken(String username);
+
+	Account findByUsernameAndEmail(String username, String email);
+
 }

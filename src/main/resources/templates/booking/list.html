@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en" th:replace= "~{/layout/index:: dynamic(~{::main}) }">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+		<main>
+
+					<div class="container mt-5">
+					<div class="card">
+					  <div class="card-header " style="background-color: black;" >
+					   <h3 style="color: white;">Lịch sữ đặt phòng</h3>
+					  </div>
+					  <div  class="card-body ">
+							<table class="table">
+							  <thead>
+							    <tr>
+							      <th scope="col">STT</th>
+							      <th scope="col">Ngày đặt phòng</th>
+							      <th scope="col">Ngày nhận phòng</th>
+							      <th scope="col">Ngày Trả Phòng</th>
+							      <th scope="col">Tổng Tiền</th>
+							       <th scope="col">	</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							    <tr th:each="booking,state:${list}">
+							      <th scope="row">[[*{state.index}]]</th>
+							      <td>[[*{booking.createDate}]]</td>
+							      <td>[[*{booking.checkinDate}]]</td>
+							      <td>[[*{booking.checkoutDate}]]</td>
+							      <td>[[*{booking.price}]]VND</td>
+							      <td>
+							      <a th:href="@{|/booking/detail/${booking.id}|}" class="btn btn-default">
+							      
+							      <i class="bi bi-search"></i> Xem chi tiết
+							       </b>
+							       </a>
+							       </td>
+							    </tr>
+							  </tbody>
+							</table>
+					  </div>
+					  </div>
+				</div>
+					</div>
+					
+				<div class="container-xxl testimonial mt-5 py-5 bg-dark wow zoomIn text-center" data-wow-delay="0.1s" style="margin-bottom: 90px;">
+            <div class="container">
+              
+        </div>
+			</main>
+</body>
+</html>

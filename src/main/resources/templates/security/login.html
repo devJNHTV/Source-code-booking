@@ -47,18 +47,21 @@
                 Remember me
               </label>
             </div>
-            <a href="#!" class="text-body">Forgot password?</a>
+            <a th:href="@{|/forgot/form|}" class="text-body">Forgot password?</a>
           </div>
 
           <div class="text-center text-lg-start mt-4 pt-2">
             <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg"
               style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
+            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a th:href="@{|/register/form|}"
                 class="link-danger">Register</a></p>
           </div>
           <i th:text="${msg}" style="font-size: 2rem; /* Kích thước chữ to */
     text-transform: uppercase; /* Chữ hoa */
     color: red;"></i>
+     		<i th:text="${successmsg}" style="font-size: 2rem; /* Kích thước chữ to */
+   			 text-transform: uppercase; /* Chữ hoa */
+   			 color: green;"></i>
 
         </form>
       </div>
@@ -68,20 +71,7 @@
     <!-- Copyright -->
 
     <!-- Right -->
-    <div>
-      <a href="#!" class="text-white me-4">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="#!" class="text-white me-4">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="#!" class="text-white me-4">
-        <i class="fab fa-google"></i>
-      </a>
-      <a href="#!" class="text-white">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-    </div>
+
     <!-- Right -->
   </div>
 </section>

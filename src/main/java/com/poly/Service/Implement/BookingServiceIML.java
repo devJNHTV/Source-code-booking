@@ -46,6 +46,11 @@ public class BookingServiceIML implements BookingService {
 			
 			return  bDao.findById(id).get();
 		}
+		@Override
+		public List<Booking> findBookingByUserName(String username) {
+			
+			return bDao.findByUserName(username);
+		}
 	
 
 }

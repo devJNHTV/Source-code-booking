@@ -23,7 +23,9 @@ public class Authority {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
-	String roleId;
+	@ManyToOne
+	@JoinColumn(name = "roleid")
+	Role roleid;
 	@ManyToOne
 	@JoinColumn(name = "username")
 	Account account;

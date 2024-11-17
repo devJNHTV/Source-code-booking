@@ -1,5 +1,6 @@
 package com.poly.Service.Implement;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,11 @@ public class RoomServiceIml  implements RoomService{
 		 roomUpdated.setStatus(updatedStatus);
 		 
 		return rDAO.save(roomUpdated);
+	}
+	@Override
+	public List<Room> findAvailableRooms(LocalDate checkIn, LocalDate checkOut) {
+		
+		return rDAO.findAvailableRooms(checkIn, checkOut);
 	}
 
 }

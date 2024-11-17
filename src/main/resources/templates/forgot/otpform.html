@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en" th:replace= "~{/layout/index:: dynamic(~{::main}) }">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+</head>
+
+<body>
+		<main>
+		 <section class="vh-100">
+ 		 <div class="container-fluid h-custom">
+  	  <div class="row d-flex justify-content-center align-items-center h-100">
+   	   <div class="col-md-9 col-lg-6 col-xl-5">
+    	    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+     	     class="img-fluid" alt="Sample image">
+   	   </div>
+  	    <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+  	              <!-- Form dang ky -->
+										<h2>Xác Nhận OTP</h2>
+				    <form th:action="@{/verify-otp}" method="post">
+				        <input type="hidden" name="username" th:value="${username}">
+				        <div class="form-group">
+				            <label for="otp">Mã OTP:</label>
+				            <input type="text" id="otp" name="otp" class="form-control" required>
+				        </div>
+				        <button type="submit" class="btn btn-primary">Xác nhận</button>
+				    </form>
+						           
+      </div>
+    </div>
+  </div>
+  <div>
+ 
+  </div>
+</section>
+ <div class="container-xxl testimonial mt-5 py-5 bg-dark wow zoomIn text-center" data-wow-delay="0.1s" style="margin-bottom: 90px;">
+            <div class="container">
+              
+        </div>
+		</main>
+</body>
+</html>

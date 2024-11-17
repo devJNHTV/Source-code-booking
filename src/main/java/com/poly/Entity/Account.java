@@ -35,8 +35,6 @@ public class Account {
     @Email(message="{Email.account.email")
     private String email;
 	@NotBlank(message="{NotBlank.account.phone}")
-	@Pattern(regexp = "^[0-9]+$", message = "Phone number must contain only digits")
-	@Size(min=15,message="{phone.size}")
     private String phone ;
     private Boolean enabled;
     @JsonIgnore

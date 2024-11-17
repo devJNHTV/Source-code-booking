@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en" th:replace= "~{/layout/index:: dynamic(~{::main}) }">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+		<main th:object="${booking}">
+				<div class="container">
+							<div class="row">
+							        <div class="card" >
+					       					 <div class="card-header">
+					  	 							<h1 style="font-family: Georgia, serif, Arial, sans-serif !important">Check Out Infomation</h1>
+					  	 							
+					 						 </div>
+							 		 <div class="card-body">
+									    	<form class="row g-3" method="Post" >
+											  <div class="col-md-6">
+												    <label class="form-label">Ngày đặt phòng</label>
+												        <input type="date"  class="form-control"  th:value="${booking.createDate}" readonly>
+												</div>										   
+											    <div class="col-md-6">
+											    <label  class="form-label">Họ và tên </label>
+											   <input  class="form-control" th:value="${account.fullname}" readonly>
+											  </div>
+											   <div class="col-md-6">
+											    <label  class="form-label">Số điện thoại</label>
+											    <input  class="form-control" th:value="${account.phone}" readonly>
+											  </div>
+											   <div class="col-md-6">
+											    <label  class="form-label">Email</label>
+											     <input  class="form-control" th:value="${account.email}" readonly>
+											  </div>
+											  <div class="col-md-6">
+											    <label  class="form-label">Ngày nhận phòng</label>
+											    <input type="date"  class="form-control"  th:value="${booking.checkinDate}" readonly>
+											  </div>
+											  <div class="col-md-6">
+											    <label  class="form-label">Ngày trả phòng</label>
+											   <input type="date"  class="form-control"  th:value="${booking.checkoutDate}" readonly>
+											  </div>
+											    											    										
+									 </form>
+					  </div>
+				</div>
+							</div>
+							<div class="row">
+							 <h1 style="font-family: Georgia, serif, Arial, sans-serif !important">Danh sách phòng: </h1>
+							  <table class="table table-bordered table-hover align-middle text-center">
+               								 <thead class="table-dark text-center" >
+								                    <tr>
+								                        <th scope="col">Mã Phòng</th>
+								                        <th scope="col">Phòng</th>
+								                        <th scope="col">Ảnh Phòng</th>
+								                        <th scope="col">Giá Tiền</th>
+								                        <th scope="col">Số ngày </th>
+								                        <th scope="col">Tổng Tiền</th>
+								                   
+								                    </tr>
+              								 </thead>
+							                <tbody >
+									                  <tr th:each="detail : *{bookingDetails}" th:if="${detail.Room != null}" th:object="${detail}">
+														           <td>[[*{room.id}]]</td>
+														            <td>[[*{room.name}]]</td>
+														            <td style="width:30%">
+									                                <img th:src="@{/assets/img/{photo}(photo=${detail.room.photo[0]})}"  style="width:60% " class="table-img">
+									                                </td>
+										                           <td>[[*{ room.price}]]VND/đêm	</td>
+										                   	       <td th:text="${detail.servicedays}"></td>
+										                   	       <td th:text="${detail.room.price * detail.servicedays} + ' VND '"></td>
+									                           
+									                         
+									                       
+									      			  </tr>
+							                </tbody>
+            				</table>
+								</div>
+											
+							             <div class="row" >
+							             <h1 style="font-family: Georgia, serif, Arial, sans-serif !important">Danh sách dịch vụ: </h1>
+											 <table  style="margin-bottom: 50px" class="table table-bordered table-hover align-middle text-center">
+										                <thead class="table-dark text-center" >
+										                    <tr>
+										                        <th scope="col">STT</th>
+										                        <th scope="col">Tên dịch vụ</th>
+										                        <th scope="col">Số lượng </th>
+										                        <th scope="col">Số ngày sử dụng</th>
+										                         <th scope="col">Giá tiền</th>
+										                        <th scope="col">Tổng tiền</th>
+										                   
+										                    </tr>
+										                </thead>
+									                <tbody >
+												                  <tr th:each="detail : *{bookingDetails}" th:if="${detail.service != null}" th:object="${detail}">
+																	               <td>[[*{service.id}]]</td>
+																	               <td>[[*{service.name}]]</td>
+																	               <td th:text="${detail.quantity}"></td>
+														                   	       <td th:text="${detail.servicedays}"></td>
+														                   	       <td>[[*{ service.price}]]VND	</td>
+														                   	       <td th:text="${detail.service.price * detail.servicedays} + ' VND '"></td>
+												      			  </tr>
+									                </tbody>
+           							 </table>
+							</div>
+						<div style="display: flex; justify-content: flex-end; align-items: center;">
+												    <h3 style="margin-right: 5px;">Tổng Tiền:</h3>
+												    <h3 style="color: red;" th:text="${booking.price} + ' VND'"></h3>
+						</div>
+									
+				
+				</div>
+				<div class="container-xxl testimonial mt-5 py-5 bg-dark wow zoomIn text-center" data-wow-delay="0.1s" style="margin-bottom: 90px;">
+            <div class="container">
+              
+        </div>
+			</main>
+</body>
+</html>
