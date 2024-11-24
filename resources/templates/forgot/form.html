@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en" th:replace= "~{/layout/index:: dynamic(~{::main}) }">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+</head>
+
+<body>
+		<main>
+		 <section class="vh-100">
+ 		 <div class="container-fluid h-custom">
+  	  <div class="row d-flex justify-content-center align-items-center h-100">
+   	   <div class="col-md-9 col-lg-6 col-xl-5">
+    	    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+     	     class="img-fluid" alt="Sample image">
+   	   </div>
+  	    <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+  	              <!-- Form dang ky -->
+						     <form th:action="@{/forgotpassword}" method="post">
+						        <div class="form-group">
+						            <label for="username">Username:</label>
+						            <input type="text" id="username" name="username" class="form-control" required>
+						        </div>
+						        <div class="form-group">
+						            <label for="email">Email:</label>
+						            <input type="email" id="email" name="email" class="form-control" required>
+						        </div>
+						        <button type="submit" class="btn btn-primary">Gửi OTP</button>
+						     </form>
+						      <i th:text="${error}" style="font-size: 2rem; /* Kích thước chữ to */
+    text-transform: uppercase; /* Chữ hoa */
+    color: red;"></i> 
+      </div>
+    </div>
+  </div>
+  <div>
+ 
+  </div>
+</section>
+ <div class="container-xxl testimonial mt-5 py-5 bg-dark wow zoomIn text-center" data-wow-delay="0.1s" style="margin-bottom: 90px;">
+            <div class="container">
+              
+        </div>
+		</main>
+</body>
+</html>
